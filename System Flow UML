@@ -1,0 +1,23 @@
+flowchart TD
+    U[User] --> A[React Frontend]
+
+    A --> F[Daily Check-In Form]
+    A --> D[Mood Trends Dashboard]
+    A --> B[Disclaimer Banner]
+
+    F -->|POST /checkins| CC[CheckInController]
+    D -->|GET /checkins| CC
+
+    CC --> CR[CheckInRepository]
+    CR --> DB[(Database)]
+
+    F -->|POST /ai/recommendations| AC[AiRecommendationController]
+    AC --> AS[AiRecommendationService]
+    AS --> CR
+    AS --> AI[Third-Party AI API]
+
+    AS -->|AI-Generated Suggestion| A
+
+    AS -->|Elevated Risk Detected| RC[ResourceController]
+    RC --> RS[ResourceService]
+    RS --> A

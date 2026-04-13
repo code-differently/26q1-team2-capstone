@@ -1,0 +1,78 @@
+# Mental Health Tracker UML
+
+This UML file is aligned to the current frontend branch split and responsibilities for the React side of the capstone project, including `App.jsx`, the check-in form, dashboard, AI suggestion card, resource alert card, disclaimer banner, and `api.js` service layer.
+
+---
+
+## Frontend UML
+
+```mermaid
+classDiagram
+    class App {
+        +render()
+    }
+
+    class DailyCheckInForm {
+        -moodScore: number
+        -stressLevel: number
+        -sleepQuality: string
+        -journalNotes: string
+        -triggers: string
+        -copingStrategiesUsed: string
+        +handleInputChange()
+        +validateForm()
+        +handleSubmit()
+    }
+
+    class MoodTrendsDashboard {
+        -checkIns: CheckIn[]
+        +fetchCheckIns()
+        +formatMoodData()
+        +formatStressData()
+        +renderMoodChart()
+        +renderStressChart()
+    }
+
+    class AiSuggestionCard {
+        -label: string
+        -suggestion: string
+        +render()
+    }
+
+    class ResourceAlertCard {
+        -message: string
+        -resourceLinks: string[]
+        +render()
+    }
+
+    class DisclaimerBanner {
+        +render()
+    }
+
+    class ApiService {
+        +submitCheckIn(data)
+        +getCheckIns()
+        +getAiRecommendation()
+        +getSupportResources()
+    }
+
+    class CheckIn {
+        +id: number
+        +moodScore: number
+        +stressLevel: number
+        +sleepQuality: string
+        +journalNotes: string
+        +triggers: string
+        +copingStrategiesUsed: string
+        +createdAt: Date
+    }
+
+    App --> DailyCheckInForm
+    App --> MoodTrendsDashboard
+    App --> DisclaimerBanner
+    DailyCheckInForm --> ApiService
+    MoodTrendsDashboard --> ApiService
+    DailyCheckInForm --> AiSuggestionCard
+    DailyCheckInForm --> ResourceAlertCard
+    DailyCheckInForm --> CheckIn
+    MoodTrendsDashboard --> CheckIn
