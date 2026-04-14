@@ -1,0 +1,158 @@
+:root {
+  --primary: #7DA3D8;        
+  --primary-dark: #5C84C6;
+  --secondary: #7FBF9F;      
+  --bg: #F4F7FB;
+  --surface: #FFFFFF;
+  --text: #1F2937;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+
+.card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+
+input,
+textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+
+.range-wrap {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.range-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.range-value {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.ai-card {
+  background: #EAF7F1;
+  border-left: 4px solid var(--secondary);
+}
+
+.ai-list,
+.resource-list {
+  padding-left: 18px;
+}
+
+.ai-list li,
+.resource-list li {
+  margin-bottom: 10px;
+}
+
+
+.history {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.history-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge-primary {
+  background: #E6EEF9;
+  color: var(--primary);
+}
+
+.badge-secondary {
+  background: #EAF7F1;
+  color: #047857;
+}
+
+.disclaimer {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #fff3cd;
+  border-radius: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
