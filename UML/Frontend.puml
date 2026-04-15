@@ -1,0 +1,64 @@
+@startuml
+
+class App
+
+class DailyCheckInForm {
+  -moodScore : number
+  -stressLevel : number
+  -sleepQuality : string
+  -journalNotes : string
+  -triggers : string
+  -copingStrategiesUsed : string
+  +handleInputChange()
+  +validateForm()
+  +handleSubmit()
+}
+
+class MoodTrendsDashboard {
+  -checkIns : CheckIn[]
+  +fetchCheckIns()
+  +formatMoodData()
+  +formatStressData()
+}
+
+class AiSuggestionCard {
+  -label : string
+  -suggestion : string
+}
+
+class ResourceAlertCard {
+  -message : string
+  -resourceLinks : string[]
+}
+
+class DisclaimerBanner
+
+class ApiService {
+  +submitCheckIn(data)
+  +getCheckIns()
+  +getAiRecommendation()
+  +getSupportResources()
+}
+
+class CheckIn {
+  +id : number
+  +moodScore : number
+  +stressLevel : number
+  +sleepQuality : string
+  +journalNotes : string
+  +triggers : string
+  +copingStrategiesUsed : string
+  +createdAt : Date
+}
+
+App --> DailyCheckInForm
+App --> MoodTrendsDashboard
+App --> DisclaimerBanner
+DailyCheckInForm --> ApiService
+MoodTrendsDashboard --> ApiService
+DailyCheckInForm --> AiSuggestionCard
+DailyCheckInForm --> ResourceAlertCard
+DailyCheckInForm --> CheckIn
+MoodTrendsDashboard --> CheckIn
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+actor User
+
+rectangle "React Frontend" {
+  component "Daily Check-In Form" as Form
+  component "Mood Trends Dashboard" as Dashboard
+  component "Disclaimer Banner" as Disclaimer
+  component "AI Suggestion Card" as Suggestion
+  component "Resource Alert Card" as ResourceCard
+}
+
+rectangle "Spring Boot Backend" {
+  component "CheckInController" as CC
+  component "AiRecommendationController" as AC
+  component "ResourceController" as RC
+  component "AiRecommendationService" as AS
+  component "ResourceService" as RS
+  database "MySQL Database" as DB
+  component "ThirdPartyAiClient" as AI
+}
+
+User --> Form
+User --> Dashboard
+Form --> CC : POST /checkins
+Dashboard --> CC : GET /checkins
+Form --> AC : POST /ai/recommendations
+Form --> RC : GET /resources
+CC --> DB
+AC --> AS
+AS --> DB
+AS --> AI
+RC --> RS
+AS --> Suggestion
+RS --> ResourceCard
+
+@enduml
