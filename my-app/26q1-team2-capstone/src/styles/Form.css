@@ -1,0 +1,223 @@
+.checkin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-heading {
+  margin-bottom: 2px;
+}
+
+.form-heading h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.form-heading p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.mood-btn {
+  border: 1px solid rgba(95, 179, 167, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 20px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  text-align: center;
+}
+
+.mood-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(95, 179, 167, 0.3);
+  box-shadow: 0 12px 24px rgba(63, 118, 108, 0.09);
+}
+
+.mood-btn.active {
+  background: linear-gradient(135deg, rgba(95, 179, 167, 0.18), rgba(138, 156, 255, 0.16));
+  border-color: rgba(95, 179, 167, 0.36);
+  box-shadow: 0 14px 26px rgba(95, 179, 167, 0.16);
+}
+
+.mood-emoji {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.mood-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--text-main);
+}
+
+.mood-value {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  border: 1px solid rgba(95, 179, 167, 0.16);
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 16px;
+  padding: 13px 14px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: rgba(95, 179, 167, 0.45);
+  box-shadow: 0 0 0 4px rgba(95, 179, 167, 0.12);
+  background: white;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-chip {
+  border: 1px solid rgba(95, 179, 167, 0.16);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+  transform: translateY(-1px);
+}
+
+.tag-chip.active {
+  background: rgba(166, 227, 216, 0.42);
+  color: var(--primary-dark);
+  border-color: rgba(95, 179, 167, 0.34);
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-note {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 13px 24px;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 14px 28px rgba(95, 179, 167, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.input-help {
+  font-size: 0.84rem;
+  color: var(--text-soft);
+}
+
+.error-text {
+  font-size: 0.84rem;
+  color: #c54d4d;
+}
+
+.success-box {
+  background: rgba(233, 251, 246, 0.92);
+  border: 1px solid rgba(95, 179, 167, 0.16);
+  color: var(--primary-dark);
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .mood-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .mood-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mood-btn {
+    padding: 14px 10px;
+  }
+
+  .form-footer {
+    align-items: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
