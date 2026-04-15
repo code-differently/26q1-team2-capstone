@@ -1,4 +1,6 @@
 package com.team2.mentalhealthtracker.model;
 
-public class CopingStrategy {
+public enum Role {
+    USER,
+    ADMIN
 }

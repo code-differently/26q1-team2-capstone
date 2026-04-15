@@ -1,7 +1,6 @@
 package com.team2.mentalhealthtracker.service;
 
-import com.team2.mentalhealthtracker.model.MoodEntry;
-import com.team2.mentalhealthtracker.repository.MoodEntryRepository;
+import com.team2.mentalhealthtracker.repository.CheckInRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +8,9 @@ import java.util.List;
 @Service
 public class MoodEntryService {
 
-    private final MoodEntryRepository moodEntryRepository;
+    private final CheckInRepository moodEntryRepository;
 
-    public MoodEntryService(MoodEntryRepository moodEntryRepository) {
+    public MoodEntryService(CheckInRepository moodEntryRepository) {
         this.moodEntryRepository = moodEntryRepository;
     }
 
