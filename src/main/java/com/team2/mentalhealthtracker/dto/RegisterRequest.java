@@ -1,12 +1,13 @@
 package com.team2.mentalhealthtracker.dto;
 
-public class UserRequest {
+public class RegisterRequest {
 
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
 
-    public UserRequest() {
+    public RegisterRequest() {
     }
 
     public String getFirstName() {
@@ -31,5 +32,13 @@ public class UserRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
