@@ -1,7 +1,10 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      © 2026 NeuroNest. Built for mental wellness tracking and support.
+      <p>
+        NeuroNest is a wellness support tool and not a substitute for
+        professional mental health care.
+      </p>
     </footer>
   );
 }

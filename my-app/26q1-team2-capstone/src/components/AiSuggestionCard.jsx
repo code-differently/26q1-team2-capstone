@@ -1,32 +1,17 @@
-export default function AiSuggestionCard({ suggestions }) {
+export default function AiSuggestionCard({ suggestionData }) {
+  const suggestion =
+    suggestionData?.suggestion ||
+    "Complete a daily check-in to receive an AI-generated coping suggestion.";
+
+  const label =
+    suggestionData?.label ||
+    "AI-Generated Suggestion";
+
   return (
-    <section className="card suggestion-card glass-card fade-up">
-      <div className="section-heading">
-        <div>
-          <p className="section-kicker">AI Support</p>
-          <h2>AI-Generated Suggestions</h2>
-        </div>
-      </div>
-
-      <p className="muted">
-        These suggestions are AI-generated support ideas based on your latest
-        check-in.
-      </p>
-
-      {suggestions.length === 0 ? (
-        <div className="empty-state fancy-empty">
-          <div className="empty-orb"></div>
-          <p>Complete a check-in to receive calming suggestions.</p>
-        </div>
-      ) : (
-        <ul className="suggestion-list">
-          {suggestions.map((tip, index) => (
-            <li key={`${tip}-${index}`} className="soft-list-item">
-              {tip}
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
+    <div className="content-card">
+      <p className="section-label">{label}</p>
+      <h2>Supportive Guidance</h2>
+      <p>{suggestion}</p>
+    </div>
   );
 }

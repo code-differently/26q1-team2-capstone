@@ -1,19 +1,65 @@
 import { useState } from "react";
+import { loginUser } from "../api/api";
 
-export default function LoginPage({ onSignIn, setPage }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginPage({ onLoginSuccess }) {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-    if (!email.trim() || !password.trim()) {
-      alert("Please enter your email and password.");
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  }
+
+  function validateForm() {
+    if (!formData.email.trim()) {
+      return "Email is required.";
+    }
+
+    if (!formData.password.trim()) {
+      return "Password is required.";
+    }
+
+    return "";
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
+    setSuccessMessage("");
+
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
-    onSignIn();
-  };
+    try {
+      setLoading(true);
+
+      const response = await loginUser(formData);
+
+      setSuccessMessage("Login successful.");
+
+      if (onLoginSuccess) {
+        onLoginSuccess(response);
+      }
+    } catch (loginError) {
+      console.error("Login error:", loginError);
+      setError("Login failed. Please check your email and password.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <section className="page-section center-page">
@@ -23,36 +69,38 @@ export default function LoginPage({ onSignIn, setPage }) {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="login-email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              id="login-email"
+              id="email"
+              name="email"
               type="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="login-password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
-              id="login-password"
+              id="password"
+              name="password"
               type="password"
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
             />
           </div>
 
-          <button type="submit" className="primary-btn full-btn">
-            Sign In
+          {error && <p style={{ color: "red", marginTop: "12px" }}>{error}</p>}
+          {successMessage && (
+            <p style={{ color: "green", marginTop: "12px" }}>{successMessage}</p>
+          )}
+
+          <button className="primary-btn full-btn" type="submit" disabled={loading}>
+            {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
-
-        <p className="switch-text">
-          Don’t have an account?{" "}
-          <span onClick={() => setPage("signup")}>Create one here</span>
-        </p>
       </div>
     </section>
   );

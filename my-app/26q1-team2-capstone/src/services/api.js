@@ -1,34 +1,110 @@
-export function buildSuggestionsAndAlert(entry) {
-  const suggestions = [];
-  let resourceAlert = "";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
-  const stress = Number(entry.stress);
-  const sleep = Number(entry.sleep);
-  const mood = entry.mood;
+export async function registerUser(userData) {
+  const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  });
 
-  if (stress >= 8) {
-    suggestions.push("Try a short breathing or grounding exercise.");
-    suggestions.push("Take a calm break and reduce extra stimulation.");
+  if (!response.ok) {
+    throw new Error("Failed to register user");
   }
 
-  if (sleep > 0 && sleep < 6) {
-    suggestions.push("Aim for a more restful bedtime routine tonight.");
+  return response.json();
+}
+
+export async function loginUser(credentials) {
+  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(credentials)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to login");
   }
 
-  if (mood === "Sad" || mood === "Anxious" || mood === "Overwhelmed") {
-    suggestions.push("Write down one thing you can control right now.");
-    suggestions.push("Reach out to someone you trust for support.");
+  return response.json();
+}
+
+export async function getUserProfile(userId) {
+  const response = await fetch(`${API_BASE_URL}/api/users/${userId}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch user profile");
   }
 
-  if (suggestions.length === 0) {
-    suggestions.push("Keep tracking your wellness and checking in daily.");
-    suggestions.push("Make space today for rest, water, and reflection.");
+  return response.json();
+}
+
+export async function updateUserProfile(userId, data) {
+  const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update user profile");
   }
 
-  if (stress >= 9 || mood === "Overwhelmed") {
-    resourceAlert =
-      "Your latest check-in suggests you may need extra support today. Consider reaching out to a trusted person, counselor, or local support resource.";
+  return response.json();
+}
+
+export async function createCheckIn(userId, data) {
+  const response = await fetch(`${API_BASE_URL}/api/checkins/${userId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create check-in");
   }
 
-  return { suggestions, resourceAlert };
+  return response.json();
+}
+
+export async function getCheckIns(userId) {
+  const response = await fetch(`${API_BASE_URL}/api/checkins/${userId}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch check-ins");
+  }
+
+  return response.json();
+}
+
+export async function getAiRecommendation(userId) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/ai/recommendations/${userId}`,
+    {
+      method: "POST"
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch AI recommendation");
+  }
+
+  return response.json();
+}
+
+export async function getResources() {
+  const response = await fetch(`${API_BASE_URL}/api/resources`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch resources");
+  }
+
+  return response.json();
 }

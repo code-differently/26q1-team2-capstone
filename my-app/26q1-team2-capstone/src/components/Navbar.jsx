@@ -1,39 +1,32 @@
-import logo from "../assets/mentalhealthlogo.png";
-
-export default function Navbar({ setPage, loggedIn, onLogout }) {
+export default function Navbar({ setPage }) {
   return (
     <header className="navbar">
       <div className="nav-brand" onClick={() => setPage("home")}>
-        <img src={logo} alt="NeuroNest logo" className="logo" />
+        <div className="logo-shell">
+          <img
+            src="/images/mentalhealthlogo.png"
+            alt="NeuroNest Logo"
+            className="logo"
+          />
+        </div>
+
         <div className="brand-text">
           <h1>NeuroNest</h1>
-          <p>Your calm space for daily wellness</p>
+          <p>Daily wellness tracking and support</p>
         </div>
       </div>
 
       <nav className="nav-links">
         <button onClick={() => setPage("home")}>Home</button>
-        <button onClick={() => setPage("about")}>About</button>
         <button onClick={() => setPage("dashboard")}>Dashboard</button>
-
-        {!loggedIn ? (
-          <>
-            <button onClick={() => setPage("login")}>Login</button>
-            <button
-              className="nav-signup-btn"
-              onClick={() => setPage("signup")}
-            >
-              Create Account
-            </button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => setPage("profile")}>Profile</button>
-            <button className="nav-signup-btn" onClick={onLogout}>
-              Logout
-            </button>
-          </>
-        )}
+        <button onClick={() => setPage("profile")}>Profile</button>
+        <button onClick={() => setPage("login")}>Login</button>
+        <button
+          className="nav-signup-btn"
+          onClick={() => setPage("signup")}
+        >
+          Sign Up
+        </button>
       </nav>
     </header>
   );
