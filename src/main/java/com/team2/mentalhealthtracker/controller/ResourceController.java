@@ -1,23 +1,29 @@
 package com.team2.mentalhealthtracker.controller;
 
-import com.team2.mentalhealthtracker.dto.ResourceResponse;
-import com.team2.mentalhealthtracker.service.ResourceService;
-import org.springframework.http.ResponseEntity;
+import com.team2.mentalhealthtracker.model.ResourceLink;
+import com.team2.mentalhealthtracker.service.ResourceLinkService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/resources")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/api/resources")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ResourceController {
 
-    private final ResourceService resourceService;
+    private final ResourceLinkService resourceLinkService;
 
-    public ResourceController(ResourceService resourceService) {
-        this.resourceService = resourceService;
+    public ResourceController(ResourceLinkService resourceLinkService) {
+        this.resourceLinkService = resourceLinkService;
+    }
+
+    @PostMapping
+    public ResourceLink createResource(@RequestBody ResourceLink resourceLink) {
+        return resourceLinkService.saveResourceLink(resourceLink);
     }
 
     @GetMapping
-    public ResponseEntity<ResourceResponse> getSupportResources() {
-        return ResponseEntity.ok(resourceService.getProfessionalResources());
+    public List<ResourceLink> getAllResources() {
+        return resourceLinkService.getAllResourceLinks();
     }
 }

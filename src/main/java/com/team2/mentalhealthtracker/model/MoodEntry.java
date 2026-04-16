@@ -8,11 +8,11 @@ public class MoodEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private int moodScore;
+    private Integer moodScore;
 
-    private int stressLevel;
+    private Integer stressLevel;
 
     private String sleepQuality;
 
@@ -25,23 +25,23 @@ public class MoodEntry {
         this.createdAt = LocalDateTime.now();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getMoodScore() {
+    public Integer getMoodScore() {
         return moodScore;
     }
 
-    public void setMoodScore(int moodScore) {
+    public void setMoodScore(Integer moodScore) {
         this.moodScore = moodScore;
     }
 
-    public int getStressLevel() {
+    public Integer getStressLevel() {
         return stressLevel;
     }
 
-    public void setStressLevel(int stressLevel) {
+    public void setStressLevel(Integer stressLevel) {
         this.stressLevel = stressLevel;
     }
 
