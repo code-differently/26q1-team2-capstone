@@ -1,4 +1,4 @@
-export default function HomePage() {
+export default function HomePage({ setPage }) {
   return (
     <section className="page-section">
       <div className="content-card hero-card">
@@ -10,8 +10,19 @@ export default function HomePage() {
         </p>
 
         <div className="hero-actions">
-          <button className="primary-btn">Open Dashboard</button>
-          <button className="secondary-btn">Learn More</button>
+          <button
+            className="primary-btn"
+            onClick={() => setPage("dashboard")}
+          >
+            Open Dashboard
+          </button>
+
+          <button
+            className="secondary-btn"
+            onClick={() => setPage("about")}
+          >
+              Learn More
+            </button>
         </div>
       </div>
     </section>

@@ -128,4 +128,10 @@ textarea {
   .page-content {
     padding-top: 160px;
   }
+
+  .about-list {
+  margin-top: 12px;
+  padding-left: 20px;
+  line-height: 1.8;
+}
 }
