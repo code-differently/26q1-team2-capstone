@@ -3,17 +3,15 @@ package com.team2.mentalhealthtracker.dto;
 public class UserResponse {
 
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
 
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String firstName, String lastName, String email) {
+    public UserResponse(Long id, String name, String email) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.email = email;
     }
 
@@ -21,15 +19,19 @@ public class UserResponse {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/ai")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/api/ai")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AiRecommendationController {
 
     private final AiRecommendationService aiRecommendationService;

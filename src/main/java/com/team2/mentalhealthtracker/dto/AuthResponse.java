@@ -2,22 +2,30 @@ package com.team2.mentalhealthtracker.dto;
 
 public class AuthResponse {
 
-    private String token;
     private String message;
+    private String email;
 
     public AuthResponse() {
     }
 
-    public AuthResponse(String token, String message) {
-        this.token = token;
+    public AuthResponse(String message, String email) {
         this.message = message;
-    }
-
-    public String getToken() {
-        return token;
+        this.email = email;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
