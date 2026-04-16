@@ -9,24 +9,55 @@ import AboutPage from "./pages/AboutPage";
 
 function App() {
   const [page, setPage] = useState("home");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleSignIn = () => {
+    setLoggedIn(true);
+    setPage("dashboard");
+  };
+
+  const handleCreateAccount = () => {
+    setLoggedIn(true);
+    setPage("dashboard");
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setPage("home");
+  };
 
   return (
     <div className="app-shell">
-      <Navbar setPage={setPage} />
+      <Navbar
+        setPage={setPage}
+        loggedIn={loggedIn}
+        onLogout={handleLogout}
+      />
 
       <main className="page-content">
         {page === "home" && <HomePage setPage={setPage} />}
-        {page === "dashboard" && <DashboardPage />}
-        {page === "login" && <LoginPage />}
-        {page === "signup" && <SignUp />}
-        {page === "profile" && <ProfilePage />}
         {page === "about" && <AboutPage />}
+        {page === "dashboard" && <DashboardPage />}
+        {page === "login" && (
+          <LoginPage
+            onSignIn={handleSignIn}
+            setPage={setPage}
+          />
+        )}
+        {page === "signup" && (
+          <SignUp
+            onCreateAccount={handleCreateAccount}
+            setPage={setPage}
+          />
+        )}
+        {page === "profile" && <ProfilePage />}
       </main>
     </div>
   );
 }
 
-
-
-
 export default App;
+
+
+
+

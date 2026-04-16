@@ -1,6 +1,6 @@
 import logo from "../assets/mentalhealthlogo.png";
 
-export default function Navbar({ setPage }) {
+export default function Navbar({ setPage, loggedIn, onLogout }) {
   return (
     <header className="navbar">
       <div className="nav-brand" onClick={() => setPage("home")}>
@@ -11,15 +11,30 @@ export default function Navbar({ setPage }) {
         </div>
       </div>
 
-      <div className="nav-links">
+      <nav className="nav-links">
         <button onClick={() => setPage("home")}>Home</button>
+        <button onClick={() => setPage("about")}>About</button>
         <button onClick={() => setPage("dashboard")}>Dashboard</button>
-        <button onClick={() => setPage("login")}>Login</button>
-        <button onClick={() => setPage("profile")}>Profile</button>
-        <button onClick={() => setPage("signup")} className="nav-signup-btn">
-          Create Account
-        </button>
-      </div>
+
+        {!loggedIn ? (
+          <>
+            <button onClick={() => setPage("login")}>Login</button>
+            <button
+              className="nav-signup-btn"
+              onClick={() => setPage("signup")}
+            >
+              Create Account
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => setPage("profile")}>Profile</button>
+            <button className="nav-signup-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </>
+        )}
+      </nav>
     </header>
   );
 }
