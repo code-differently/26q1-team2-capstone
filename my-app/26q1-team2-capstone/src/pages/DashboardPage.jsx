@@ -1,46 +1,56 @@
-import DailyCheckInForm from "../components/DailyCheckInForm";
-import MoodTrendsDashboard from "../components/MoodTrendsDashboard";
-import AISuggestionCard from "../components/AISuggestionCard";
-import ResourceAlertCard from "../components/ResourceAlertCard";
-import DisclaimerBanner from "../components/DisclaimerBanner";
-import Footer from "../components/Footer";
 import "../styles/Dashboard.css";
 
 export default function DashboardPage() {
   return (
     <div className="dashboard-page">
-      <DisclaimerBanner />
 
-      <section className="dashboard-hero">
-        <div>
-          <p className="dashboard-eyebrow">Welcome to NeuroNest</p>
-          <h1>A calmer way to care for your mind every day</h1>
-          <p className="dashboard-subtext">
-            Track your mood, stress, and sleep. Build healthy patterns one
-            check-in at a time.
-          </p>
-        </div>
-      </section>
+     
+      <h1>NeuroNest Dashboard</h1>
 
-      <section className="stats-row">
-        <div className="stat-pill">Latest Mood <span>No data</span></div>
-        <div className="stat-pill">Stress Level <span>No data</span></div>
-        <div className="stat-pill">Sleep <span>No data</span></div>
-      </section>
+     
+      <div className="stats-row">
+        <div className="stat-pill">Latest Mood</div>
+        <div className="stat-pill">Stress Level</div>
+        <div className="stat-pill">Sleep</div>
+      </div>
 
-      <section className="dashboard-grid">
+    
+      <div className="dashboard-grid">
+
+       
         <div className="dashboard-main">
-          <DailyCheckInForm />
-          <AISuggestionCard />
-          <ResourceAlertCard />
+
+          <div className="content-card">
+            <h2>Daily Reflection</h2>
+            <p>Log how you feel today.</p>
+            <button className="primary-btn">Save Check-In</button>
+          </div>
+
+          <div className="content-card">
+            <h2>AI Suggestions</h2>
+            <p>Complete a check-in to receive suggestions.</p>
+          </div>
+
         </div>
 
-        <aside className="dashboard-side">
-          <MoodTrendsDashboard />
-        </aside>
-      </section>
+       
+        <div className="dashboard-side">
+          <div className="content-card">
+            <h2>Mood Trends</h2>
 
-      <Footer />
+            <div className="chart">
+              <div className="bar" style={{ height: "50%" }}></div>
+              <div className="bar" style={{ height: "70%" }}></div>
+              <div className="bar" style={{ height: "40%" }}></div>
+              <div className="bar" style={{ height: "80%" }}></div>
+              <div className="bar" style={{ height: "60%" }}></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   );
 }
