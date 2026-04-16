@@ -3,6 +3,7 @@ package com.team2.mentalhealthtracker.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -10,9 +11,7 @@ public class User {
     private Long id;
 
     private String firstName;
-
     private String lastName;
-
     private String email;
 
     public User() {
