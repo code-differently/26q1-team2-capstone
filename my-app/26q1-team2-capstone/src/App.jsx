@@ -1,30 +1,28 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import DisclaimerBanner from "./components/DisclaimerBanner";
-import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
-import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
+import SignUp from "./pages/SignUp";
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
 
-export default function App() {
+function App() {
+  const [page, setPage] = useState("dashboard");
+
   return (
-    <BrowserRouter>
-      <div className="app-shell">
-        <Navbar />
-        <DisclaimerBanner />
+    <div className="app-shell">
+      <Navbar setPage={setPage} />
 
-        <main className="page-container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </main>
-
-        <Footer />
-      </div>
-    </BrowserRouter>
+      <main className="page-content">
+        {page === "home" && <HomePage />}
+        {page === "dashboard" && <DashboardPage />}
+        {page === "login" && <LoginPage />}
+        {page === "signup" && <SignUp />}
+        {page === "profile" && <ProfilePage />}
+      </main>
+    </div>
   );
 }
+
+
+export default App;

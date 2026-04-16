@@ -1,27 +1,25 @@
-import { Link } from "react-router-dom";
 import logo from "../assets/mentalhealthlogo.png";
 
-export default function Navbar() {
+export default function Navbar({ setPage }) {
   return (
-    <nav className="nav">
-      <div className="nav-left">
-        <div className="logo-shell">
-          <img src={logo} alt="NeuroNest logo" className="logo" />
-          <span className="logo-glow-ring"></span>
-        </div>
-
+    <header className="navbar">
+      <div className="nav-brand" onClick={() => setPage("home")}>
+        <img src={logo} alt="NeuroNest logo" className="logo" />
         <div className="brand-text">
-          <h2 className="brand-title">NeuroNest</h2>
-          <p className="brand-subtitle">Your calm space for daily wellness</p>
+          <h1>NeuroNest</h1>
+          <p>Your calm space for daily wellness</p>
         </div>
       </div>
 
       <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/profile">Profile</Link>
+        <button onClick={() => setPage("home")}>Home</button>
+        <button onClick={() => setPage("dashboard")}>Dashboard</button>
+        <button onClick={() => setPage("login")}>Login</button>
+        <button onClick={() => setPage("profile")}>Profile</button>
+        <button onClick={() => setPage("signup")} className="nav-signup-btn">
+          Create Account
+        </button>
       </div>
-    </nav>
+    </header>
   );
 }
