@@ -7,24 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/ai")
-@CrossOrigin(origins = "http://localhost:3000")
 public class AiRecommendationController {
-
     private final AiRecommendationService aiRecommendationService;
 
-    public AiRecommendationController(AiRecommendationService aiRecommendationService) {
+    public AiRecommendationController(
+            AiRecommendationService aiRecommendationService){
         this.aiRecommendationService = aiRecommendationService;
     }
 
-    @PostMapping("/recommendations")
-    public ResponseEntity<AiRecommendationResponse> getRecommendation() {
-        String suggestion = aiRecommendationService.generateSuggestion();
-
-        AiRecommendationResponse response = new AiRecommendationResponse(
-                "AI-Generated Suggestion",
-                suggestion
-        );
-
-        return ResponseEntity.ok(response);
+    @PostMapping("/recommendations/{userId}")
+    public ResponseEntity<AiRecommendationResponse> getRecommendation(
+            @PathVariable Long userId){
+        return ResponseEntity.ok(
+                new AiRecommendationResponse(
+                        "AI-Generated Suggestion",
+                        aiRecommendationService.generateSuggestion(userId)
+                ));
     }
 }

@@ -15,19 +15,19 @@ public class CheckIn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Mood score is required")
-    @Min(value = 1, message = "Mood score must be between 1 and 10")
-    @Max(value = 10, message = "Mood score must be between 1 and 10")
+    @NotNull
+    @Min(1)
+    @Max(10)
     @Column(name = "mood_score", nullable = false)
     private Integer moodScore;
 
-    @NotNull(message = "Stress level is required")
-    @Min(value = 1, message = "Stress level must be between 1 and 10")
-    @Max(value = 10, message = "Stress level must be between 1 and 10")
+    @NotNull
+    @Min(1)
+    @Max(10)
     @Column(name = "stress_level", nullable = false)
     private Integer stressLevel;
 
-    @NotNull(message = "Sleep quality is required")
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "sleep_quality", nullable = false)
     private SleepQuality sleepQuality;

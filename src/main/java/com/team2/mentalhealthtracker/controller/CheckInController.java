@@ -1,29 +1,34 @@
 package com.team2.mentalhealthtracker.controller;
 
-import com.team2.mentalhealthtracker.model.MoodEntry;
-import com.team2.mentalhealthtracker.service.MoodEntryService;
+import com.team2.mentalhealthtracker.dto.MoodEntryRequest;
+import com.team2.mentalhealthtracker.dto.MoodEntryResponse;
+import com.team2.mentalhealthtracker.service.CheckInService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/checkins")
-@CrossOrigin(origins = "http://localhost:3000")
 public class CheckInController {
+    private final CheckInService checkInService;
 
-    private final MoodEntryService moodEntryService;
-
-    public CheckInController(MoodEntryService moodEntryService) {
-        this.moodEntryService = moodEntryService;
+    public CheckInController(CheckInService checkInService){
+        this.checkInService = checkInService;
     }
 
-    @PostMapping
-    public MoodEntry createCheckIn(@RequestBody MoodEntry moodEntry) {
-        return moodEntryService.saveMoodEntry(moodEntry);
+    @PostMapping("/{userId}")
+    public ResponseEntity<MoodEntryResponse> createCheckIn(
+            @PathVariable Long userId,
+            @RequestBody MoodEntryRequest request){
+        return ResponseEntity.ok(
+                checkInService.createCheckIn(userId, request));
     }
 
-    @GetMapping
-    public List<MoodEntry> getAllCheckIns() {
-        return moodEntryService.getAllMoodEntries();
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<MoodEntryResponse>> getCheckIns(
+            @PathVariable Long userId){
+        return ResponseEntity.ok(
+                checkInService.getCheckInsByUser(userId));
     }
 }

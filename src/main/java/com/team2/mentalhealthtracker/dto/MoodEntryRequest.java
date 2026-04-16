@@ -6,6 +6,8 @@ public class MoodEntryRequest {
     private Integer stressLevel;
     private String sleepQuality;
     private String journalNotes;
+    private String triggers;
+    private String copingStrategiesUsed;
 
     public MoodEntryRequest() {
     }
@@ -40,5 +42,21 @@ public class MoodEntryRequest {
 
     public void setJournalNotes(String journalNotes) {
         this.journalNotes = journalNotes;
+    }
+
+    public String getTriggers() {
+        return triggers;
+    }
+
+    public void setTriggers(String triggers) {
+        this.triggers = triggers;
+    }
+
+    public String getCopingStrategiesUsed() {
+        return copingStrategiesUsed;
+    }
+
+    public void setCopingStrategiesUsed(String copingStrategiesUsed) {
+        this.copingStrategiesUsed = copingStrategiesUsed;
     }
 }

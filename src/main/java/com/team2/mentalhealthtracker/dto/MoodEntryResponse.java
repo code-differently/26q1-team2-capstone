@@ -9,56 +9,62 @@ public class MoodEntryResponse {
     private Integer stressLevel;
     private String sleepQuality;
     private String journalNotes;
+    private String triggers;
+    private String copingStrategiesUsed;
     private LocalDateTime createdAt;
 
     public MoodEntryResponse() {
+    }
+
+    public MoodEntryResponse(
+            Long id,
+            Integer moodScore,
+            Integer stressLevel,
+            String sleepQuality,
+            String journalNotes,
+            String triggers,
+            String copingStrategiesUsed,
+            LocalDateTime createdAt
+    ) {
+        this.id = id;
+        this.moodScore = moodScore;
+        this.stressLevel = stressLevel;
+        this.sleepQuality = sleepQuality;
+        this.journalNotes = journalNotes;
+        this.triggers = triggers;
+        this.copingStrategiesUsed = copingStrategiesUsed;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Integer getMoodScore() {
         return moodScore;
-    }
-
-    public void setMoodScore(Integer moodScore) {
-        this.moodScore = moodScore;
     }
 
     public Integer getStressLevel() {
         return stressLevel;
     }
 
-    public void setStressLevel(Integer stressLevel) {
-        this.stressLevel = stressLevel;
-    }
-
     public String getSleepQuality() {
         return sleepQuality;
-    }
-
-    public void setSleepQuality(String sleepQuality) {
-        this.sleepQuality = sleepQuality;
     }
 
     public String getJournalNotes() {
         return journalNotes;
     }
 
-    public void setJournalNotes(String journalNotes) {
-        this.journalNotes = journalNotes;
+    public String getTriggers() {
+        return triggers;
+    }
+
+    public String getCopingStrategiesUsed() {
+        return copingStrategiesUsed;
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }
