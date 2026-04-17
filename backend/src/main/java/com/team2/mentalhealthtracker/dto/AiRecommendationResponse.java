@@ -2,27 +2,27 @@ package com.team2.mentalhealthtracker.dto;
 
 public class AiRecommendationResponse {
 
-    private String label;
+    private String title;
     private String suggestion;
 
     public AiRecommendationResponse() {
     }
 
-    public AiRecommendationResponse(String label, String suggestion) {
-        this.label = label;
+    public AiRecommendationResponse(String title, String suggestion) {
+        this.title = title;
         this.suggestion = suggestion;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
+    public String getTitle() {
+        return title;
     }
 
     public String getSuggestion() {
         return suggestion;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setSuggestion(String suggestion) {

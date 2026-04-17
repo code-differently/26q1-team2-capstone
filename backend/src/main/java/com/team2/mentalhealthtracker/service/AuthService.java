@@ -39,8 +39,9 @@ public class AuthService {
         userRepository.save(user);
 
         return new AuthResponse(
-                "demo-token",
-                "User registered successfully"
+                "User registered successfully",
+                user.getEmail(),
+                user.getId()
         );
     }
 
@@ -54,8 +55,9 @@ public class AuthService {
         }
 
         return new AuthResponse(
-                "demo-token",
-                "Login successful"
+                "Login successful",
+                user.getEmail(),
+                user.getId()
         );
     }
 }
