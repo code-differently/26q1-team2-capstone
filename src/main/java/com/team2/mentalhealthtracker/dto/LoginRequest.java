@@ -1,11 +1,15 @@
 package com.team2.mentalhealthtracker.dto;
 
-public class AuthRequest {
-
+public class LoginRequest {
     private String email;
     private String password;
 
-    public AuthRequest() {
+    public LoginRequest() {
+    }
+
+    public LoginRequest(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public String getEmail() {

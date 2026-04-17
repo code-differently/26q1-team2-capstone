@@ -1,31 +1,30 @@
 package com.team2.mentalhealthtracker.dto;
 
 public class AiRecommendationResponse {
-
-    private String title;
     private String suggestion;
+    private String suggestedGoal;
 
     public AiRecommendationResponse() {
     }
 
-    public AiRecommendationResponse(String title, String suggestion) {
-        this.title = title;
+    public AiRecommendationResponse(String suggestion, String suggestedGoal) {
         this.suggestion = suggestion;
-    }
-
-    public String getTitle() {
-        return title;
+        this.suggestedGoal = suggestedGoal;
     }
 
     public String getSuggestion() {
         return suggestion;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public void setSuggestion(String suggestion) {
         this.suggestion = suggestion;
+    }
+
+    public String getSuggestedGoal() {
+        return suggestedGoal;
+    }
+
+    public void setSuggestedGoal(String suggestedGoal) {
+        this.suggestedGoal = suggestedGoal;
     }
 }
