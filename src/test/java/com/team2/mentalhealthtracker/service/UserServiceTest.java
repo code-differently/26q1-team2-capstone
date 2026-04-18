@@ -120,4 +120,18 @@ class UserServiceTest {
 
         verify(userRepository, times(1)).findByEmail(email);
     }
+
+    @Test
+    void shouldThrowWhenUpdatingGoalForMissingUser() {
+        Long userId = 99L;
+
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.updateGoal(userId, "New goal"));
+
+        assertEquals("User not found", exception.getMessage());
+        verify(userRepository, times(1)).findById(userId);
+        verify(userRepository, never()).save(any(User.class));
+    }
 }

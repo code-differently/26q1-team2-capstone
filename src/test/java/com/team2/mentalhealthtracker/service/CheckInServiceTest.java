@@ -123,4 +123,60 @@ class CheckInServiceTest {
         verify(userRepository, times(1)).findById(userId);
         verify(checkInRepository, never()).save(any(CheckIn.class));
     }
+
+    @Test
+    void shouldThrowWhenGettingCheckInsForMissingUser() {
+        Long userId = 99L;
+
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> checkInService.getCheckInsByUser(userId));
+
+        assertEquals("User not found", exception.getMessage());
+        verify(userRepository, times(1)).findById(userId);
+        verify(checkInRepository, never()).findByUserOrderByCreatedAtAsc(any());
+    }
+
+    @Test
+    void shouldThrowWhenSleepQualityIsBlank() {
+        Long userId = 1L;
+
+        User user = new User();
+        MoodEntryRequest request = new MoodEntryRequest();
+        request.setMoodScore(7);
+        request.setStressLevel(4);
+        request.setSleepQuality(" ");
+        request.setJournalNotes("Feeling off");
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> checkInService.createCheckIn(userId, request));
+
+        assertEquals("Sleep quality is required", exception.getMessage());
+        verify(userRepository, times(1)).findById(userId);
+        verify(checkInRepository, never()).save(any(CheckIn.class));
+    }
+
+    @Test
+    void shouldThrowWhenSleepQualityIsInvalid() {
+        Long userId = 1L;
+
+        User user = new User();
+        MoodEntryRequest request = new MoodEntryRequest();
+        request.setMoodScore(7);
+        request.setStressLevel(4);
+        request.setSleepQuality("amazing");
+        request.setJournalNotes("Feeling off");
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> checkInService.createCheckIn(userId, request));
+
+        assertEquals("Invalid sleep quality. Use GOOD, OKAY, or POOR", exception.getMessage());
+        verify(userRepository, times(1)).findById(userId);
+        verify(checkInRepository, never()).save(any(CheckIn.class));
+    }
 }

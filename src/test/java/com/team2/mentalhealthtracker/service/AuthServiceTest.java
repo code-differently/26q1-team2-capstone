@@ -177,4 +177,32 @@ class AuthServiceTest {
         verify(userRepository, times(1)).existsByEmail("mesheik@example.com");
         verify(userRepository, never()).save(any(User.class));
     }
+
+    @Test
+    void shouldThrowExceptionWhenRegisterEmailIsNull() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail(null);
+        request.setPassword("123456");
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> authService.register(request));
+
+        assertEquals("Email is required", exception.getMessage());
+        verify(userRepository, never()).existsByEmail(anyString());
+        verify(userRepository, never()).save(any(User.class));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenRegisterPasswordIsNull() {
+        RegisterRequest request = new RegisterRequest();
+        request.setEmail("meshiek@example.com");
+        request.setPassword(null);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> authService.register(request));
+
+        assertEquals("Password is required", exception.getMessage());
+        verify(userRepository, never()).existsByEmail(anyString());
+        verify(userRepository, never()).save(any(User.class));
+    }
 }
