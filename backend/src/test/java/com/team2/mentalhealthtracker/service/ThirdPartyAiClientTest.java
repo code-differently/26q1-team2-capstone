@@ -2,14 +2,22 @@ package com.team2.mentalhealthtracker.service;
 
 import com.team2.mentalhealthtracker.dto.AiRecommendationResponse;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ThirdPartyAiClientTest {
 
+    private ThirdPartyAiClient createClient() {
+        return new ThirdPartyAiClient(
+                WebClient.builder(),
+                "https://api.openai.com/v1"
+        );
+    }
+
     @Test
     void shouldReturnFallbackWhenExceptionOccurs() {
-        ThirdPartyAiClient client = new ThirdPartyAiClient();
+        ThirdPartyAiClient client = createClient();
 
         AiRecommendationResponse response =
                 client.getRecommendationAndGoal(null, null, null, null, null);
@@ -23,7 +31,7 @@ class ThirdPartyAiClientTest {
 
     @Test
     void shouldExtractValuesCorrectly() {
-        ThirdPartyAiClient client = new ThirdPartyAiClient();
+        ThirdPartyAiClient client = createClient();
 
         String mockOutput = """
                 SUGGESTION: Take a walk outside
