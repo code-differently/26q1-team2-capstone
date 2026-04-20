@@ -56,6 +56,9 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setGoal("I want to get better");
+        user.setRole("USER");
+
+        userRepository.save(user);
 
         User savedUser = userRepository.save(user);
 
