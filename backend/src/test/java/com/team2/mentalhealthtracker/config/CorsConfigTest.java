@@ -1,19 +1,18 @@
 package com.team2.mentalhealthtracker.config;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CorsConfigTest {
 
     @Test
-    void shouldCreateCorsFilter() {
+    void shouldCreateCorsConfigurer() {
         CorsConfig config = new CorsConfig();
 
-        CorsFilter filter = config.corsFilter();
+        WebMvcConfigurer configurer = config.corsConfigurer();
 
-        assertNotNull(filter);
-        assertTrue(filter instanceof CorsFilter);
+        assertNotNull(configurer);
     }
 }
