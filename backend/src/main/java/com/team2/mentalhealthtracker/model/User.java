@@ -3,7 +3,6 @@ package com.team2.mentalhealthtracker.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -11,7 +10,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String firstName;
     private String lastName;
@@ -23,7 +21,11 @@ public class User {
     @Column(length = 500)
     private String goal;
 
+    @Column(nullable = false)
+    private String role = "USER";
+
     public User() {
+        this.role = "USER";
     }
 
     public Long getId() {
@@ -72,5 +74,13 @@ public class User {
 
     public void setGoal(String goal) {
         this.goal = goal;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
